@@ -138,7 +138,7 @@ class Jiffy {
     _defaultLocale.code = currentLocale.toLowerCase();
   }
 
-  static Future<Locale> locale([String? locale]) async {
+  static Future<Locale> locale([String? locale, StartOfWeek? startOfWeek]) async {
     _initializeLocale();
     if (locale != null) {
       if (isLocalAvailable(locale)) {
@@ -148,7 +148,7 @@ class Jiffy {
       }
       await initializeDateFormatting();
       Intl.defaultLocale = locale;
-      _defaultLocale = getLocale(locale);
+      _defaultLocale = getLocale(locale, startOfWeek);
       _defaultLocale.code = locale.toLowerCase();
     }
     return Future.value(_defaultLocale);
